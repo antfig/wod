@@ -63,13 +63,7 @@ class Collection implements \Iterator, \Countable
     }
 
     /**
-     * Count elements of an object
-     * @link https://php.net/manual/en/countable.count.php
-     * @return int The custom count as an integer.
-     * </p>
-     * <p>
-     * The return value is cast to an integer.
-     * @since 5.1.0
+     * @inheritdoc
      */
     public function count()
     {
@@ -87,6 +81,7 @@ class Collection implements \Iterator, \Countable
      * Appends an item to the end of the collection
      *
      * @param mixed $value
+     *
      * @return Collection
      */
     public function add($value): Collection
@@ -101,6 +96,7 @@ class Collection implements \Iterator, \Countable
      *
      * @param mixed $key
      * @param mixed $value
+     *
      * @return Collection
      */
     public function set($key, $value): Collection
@@ -152,5 +148,15 @@ class Collection implements \Iterator, \Countable
     public function filter(callable $callback): self
     {
         return new static(array_filter($this->items, $callback, ARRAY_FILTER_USE_BOTH));
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return bool
+     */
+    public function hasValue($value): bool
+    {
+        return in_array($value, $this->items);
     }
 }

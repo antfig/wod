@@ -74,4 +74,12 @@ class CollectionTest extends TestCase
         $this->assertEquals(0, $collection->count());
     }
 
+    public function testCanCheckIfHasValue()
+    {
+        $collection = new Collection(['foo', 'bar']);
+
+        $this->assertFalse($collection->hasValue('baz'));
+        $this->assertTrue($collection->hasValue('bar'));
+    }
+
 }
