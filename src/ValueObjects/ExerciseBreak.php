@@ -7,11 +7,17 @@ use Wod\Contracts\ExerciseInterface;
 
 final class ExerciseBreak implements ExerciseInterface
 {
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return "Break";
     }
 
+    /**
+     * @return bool
+     */
     public function isCardio(): bool
     {
         return false;

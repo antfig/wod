@@ -61,7 +61,7 @@ class Participant
      * @throws ParticipantCanNotStartOrEndWithBreakException
      * @throws CardioExercisesCanNotFollowEachOtherException
      */
-    public function addExercise(ExerciseInterface $element, int $position)
+    public function addExercise(ExerciseInterface $element, int $position): void
     {
         $this->ensureNoBreaksAtBeginningOrEnd($element, $position);
 

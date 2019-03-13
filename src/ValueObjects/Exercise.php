@@ -11,6 +11,7 @@ class Exercise implements ExerciseInterface
      * @var string
      */
     private $name;
+
     /**
      * @var bool
      */
