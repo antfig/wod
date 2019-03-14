@@ -36,6 +36,15 @@ class Output
      */
     public function printByElement()
     {
+        $participants = [];
+        /** @var Participant $participant */
+        foreach ($this->wod->getParticipants() as $participant) {
+            $participants[] = $participant->getName() . ($participant->isBeginner() ? ' (beginner)' : '');
+        }
+
+        echo "Starting the workout with ";
+        echo implode(', ', $participants);
+
         for ($element = 0; $element < Wod::ELEMENTS; $element++) {
 
             printf("\n\n%02d:00 - %02d:00", $element, $element + 1);
@@ -46,7 +55,7 @@ class Output
                 $participantExercise = $participant->getExercise($element);
                 echo " | "
                     . $participant->getName()
-                    . ($participant->isBeginner() ? ' (beginer)' : '')
+                    . ($participant->isBeginner() ? ' (beginner)' : '')
                     . ($participantExercise instanceof Exercise ? ' will do ' : ' will take a ')
                     . $participantExercise->getName();
             }
@@ -61,7 +70,7 @@ class Output
         //Print by participant
         foreach ($this->wod->getParticipants() as $participant) {
             echo "\n---------------\n";
-            echo $participant->getName() . ($participant->isBeginner() ? ' (beginer) ' : '');
+            echo $participant->getName() . ($participant->isBeginner() ? ' (beginenr) ' : '');
             /** @var Exercise $e */
             foreach ($participant->getAllExercises() as $p => $e) {
                 printf("\n%02d:00 - %02d:00 ", $p, $p + 1);
