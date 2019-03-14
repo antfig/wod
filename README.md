@@ -1,4 +1,5 @@
 # Working of the day generator assignment
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fb993d5a26864a89b16ddf62f421f780)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=antfig/wod&amp;utm_campaign=Badge_Grade)
 
 ## Business rules
 - During the program participants get two breaks. Beginners get four breaks of 1
