@@ -1,6 +1,8 @@
 # Working of the day generator assignment
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/fb993d5a26864a89b16ddf62f421f780)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=antfig/wod&amp;utm_campaign=Badge_Grade)
+[![Maintainability](https://api.codeclimate.com/v1/badges/58929e097b9cfe71dc80/maintainability)](https://codeclimate.com/github/antfig/wod/maintainability)
 [![Build Status](https://travis-ci.org/antfig/wod.svg?branch=master)](https://travis-ci.org/antfig/wod)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/58929e097b9cfe71dc80/test_coverage)](https://codeclimate.com/github/antfig/wod/test_coverage)
 
 ## Business rules
 - During the program participants get two breaks. Beginners get four breaks of 1
