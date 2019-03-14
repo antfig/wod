@@ -14,6 +14,9 @@ use Wod\Wod;
 
 class Participant
 {
+    const IS_BEGINNER = true;
+    const NOT_BEGINNER = false;
+
     /**
      * @var string
      */

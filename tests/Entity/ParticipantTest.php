@@ -17,21 +17,21 @@ class ParticipantTest extends TestCase
 {
     public function testParticipantHasNameAndCanBeBeginner()
     {
-        $beginnerParticipant = new Participant("Antonio", true);
+        $beginnerParticipant = new Participant("Antonio", Participant::IS_BEGINNER);
 
         $this->assertEquals("Antonio", $beginnerParticipant->getName());
         $this->assertTrue($beginnerParticipant->isBeginner());
 
-        $participant = new Participant("Peter", false);
+        $participant = new Participant("Peter", Participant::NOT_BEGINNER);
         $this->assertEquals("Peter", $participant->getName());
         $this->assertFalse($participant->isBeginner());
     }
 
     public function testCanAddExerciseInSelectedPosition()
     {
-        $participant = new Participant("Antonio", true);
+        $participant = new Participant("Antonio", Participant::IS_BEGINNER);
 
-        $exercise = new Exercise('Push ups', false);
+        $exercise = new Exercise('Push ups', Participant::NOT_BEGINNER);
         $position = 4;
 
         $participant->addExercise($exercise, $position);
@@ -41,7 +41,7 @@ class ParticipantTest extends TestCase
 
     public function testCanAddBreakInSelectedPosition()
     {
-        $participant = new Participant("Antonio", true);
+        $participant = new Participant("Antonio", Participant::IS_BEGINNER);
         $position = 4;
         $break = new ExerciseBreak();
 
@@ -53,7 +53,7 @@ class ParticipantTest extends TestCase
     public function testWhenIsNotBeginnerBreaksOccupyTwoElements()
     {
         $position = 1;
-        $participant = new Participant("Antonio", false);
+        $participant = new Participant("Antonio", Participant::NOT_BEGINNER);
 
         $this->assertNull($participant->getExercise($position));
         $this->assertNull($participant->getExercise($position + 1));
@@ -65,7 +65,7 @@ class ParticipantTest extends TestCase
 
     public function testCanCheckIfAlreadyDoneSomeExerciseByName()
     {
-        $participant = new Participant("Antonio", true);
+        $participant = new Participant("Antonio", Participant::IS_BEGINNER);
 
         $this->assertFalse($participant->hasDoneExercise('Push ups'));
 
@@ -75,7 +75,7 @@ class ParticipantTest extends TestCase
 
     public function testCanGetAllExercises()
     {
-        $participant = new Participant("Antonio", false);
+        $participant = new Participant("Antonio", Participant::NOT_BEGINNER);
 
         $exercise1 = new Exercise('Push ups', false);
         $exercise2 = new Exercise('Front squats', false);
@@ -93,7 +93,7 @@ class ParticipantTest extends TestCase
 
     public function testCanGetNumberOfBreaks()
     {
-        $beginner = new Participant("Antonio", true);
+        $beginner = new Participant("Antonio", Participant::IS_BEGINNER);
 
         $beginner->addExercise(new ExerciseBreak(), 2);
         $beginner->addExercise(new ExerciseBreak(), 4);
@@ -101,7 +101,7 @@ class ParticipantTest extends TestCase
 
         $this->assertEquals(3, $beginner->numberOfBreaks());
 
-        $notBeginner = new Participant("Ronaldo", false);
+        $notBeginner = new Participant("Ronaldo", Participant::NOT_BEGINNER);
 
         $notBeginner->addExercise(new ExerciseBreak(), 1);
         $notBeginner->addExercise(new ExerciseBreak(), 4);
@@ -110,7 +110,7 @@ class ParticipantTest extends TestCase
 
     public function testCanNotAddBreaksAtBeginningOfExercises()
     {
-        $participant = new Participant("Antonio", true);
+        $participant = new Participant("Antonio", Participant::IS_BEGINNER);
 
         $this->expectException(ParticipantCanNotStartOrEndWithBreakException::class);
 
@@ -119,7 +119,7 @@ class ParticipantTest extends TestCase
 
     public function testCanNotAddBreaksAtEndOfExercises()
     {
-        $participant = new Participant("Antonio", true);
+        $participant = new Participant("Antonio", Participant::IS_BEGINNER);
 
         $this->expectException(ParticipantCanNotStartOrEndWithBreakException::class);
 
@@ -128,7 +128,7 @@ class ParticipantTest extends TestCase
 
     public function testBeginnersCanDoMaximumOfFourBreaks()
     {
-        $participant = new Participant("Antonio", true);
+        $participant = new Participant("Antonio", Participant::IS_BEGINNER);
 
         $participant->addExercise(new ExerciseBreak(), 3);
         $participant->addExercise(new ExerciseBreak(), 6);
@@ -142,7 +142,7 @@ class ParticipantTest extends TestCase
 
     public function testNotBeginnersCanDoMaximumOfTwoBreaks()
     {
-        $participant = new Participant("Antonio", false);
+        $participant = new Participant("Antonio", Participant::NOT_BEGINNER);
 
         $participant->addExercise(new ExerciseBreak(), 3);
         $participant->addExercise(new ExerciseBreak(), 6);
@@ -154,7 +154,7 @@ class ParticipantTest extends TestCase
 
     public function testBeginnerCanOnlyDoOneHandstandExercise()
     {
-        $participant = new Participant("Antonio", true);
+        $participant = new Participant("Antonio", Participant::IS_BEGINNER);
 
         $participant->addExercise(new Exercise('Handstand practice'), 3);
 
@@ -165,7 +165,7 @@ class ParticipantTest extends TestCase
 
     public function testCardioExercisesCanNotFollowBeforeOtherCardio()
     {
-        $participant = new Participant("Antonio", false);
+        $participant = new Participant("Antonio", Participant::NOT_BEGINNER);
         $cardio = new Exercise('Jumping rope', true);
         $otherCardio = new Exercise('short sprints', true);
 
@@ -178,7 +178,7 @@ class ParticipantTest extends TestCase
 
     public function testCardioExercisesCanNotFollowAfterOtherCardio()
     {
-        $participant = new Participant("Antonio", false);
+        $participant = new Participant("Antonio", Participant::NOT_BEGINNER);
         $cardio = new Exercise('Jumping rope', true);
         $otherCardio = new Exercise('short sprints', true);
 

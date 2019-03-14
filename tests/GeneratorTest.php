@@ -16,13 +16,13 @@ class GeneratorTest extends TestCase
     public function testCanGenerateWod()
     {
         $participants = new Collection();
-        $participants->add(new Participant('Camille', false))
-            ->add(new Participant('Michael', false))
-            ->add(new Participant('Tom', true))
-            ->add(new Participant('Tim', false))
-            ->add(new Participant('Erik', false))
-            ->add(new Participant('Lars', false))
-            ->add(new Participant('Mathijs', true));
+        $participants->add(new Participant('Camille', Participant::NOT_BEGINNER))
+            ->add(new Participant('Michael', Participant::NOT_BEGINNER))
+            ->add(new Participant('Tom', Participant::IS_BEGINNER))
+            ->add(new Participant('Tim', Participant::NOT_BEGINNER))
+            ->add(new Participant('Erik', Participant::NOT_BEGINNER))
+            ->add(new Participant('Lars', Participant::NOT_BEGINNER))
+            ->add(new Participant('Mathijs', Participant::IS_BEGINNER));
 
         // Load Exercises Elements
         $exercises = new Collection();

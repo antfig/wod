@@ -47,9 +47,9 @@ class WodTest extends TestCase
 
     public function testCanAddParticipantExercises()
     {
-        $antonio = new Participant('Antonio', true);
-        $ronaldo = new Participant('Ronaldo', false);
-        $messi = new Participant('Messi', false);
+        $antonio = new Participant('Antonio', Participant::IS_BEGINNER);
+        $ronaldo = new Participant('Ronaldo', Participant::NOT_BEGINNER);
+        $messi = new Participant('Messi', Participant::NOT_BEGINNER);
 
         $pullUpsExercise = new Exercise('Pull ups', false);
         $ringsExercise = new Exercise('Rings', false);
@@ -67,9 +67,9 @@ class WodTest extends TestCase
 
     public function testIndividualParticipantsAreAddedOnlyOnce()
     {
-        $participant = new Participant('Antonio', true);
-        $participant2 = new Participant('Ronaldo', false);
-        $exercise = new Exercise('Pull ups', false);
+        $participant = new Participant('Antonio', Participant::IS_BEGINNER);
+        $participant2 = new Participant('Ronaldo', Participant::NOT_BEGINNER);
+        $exercise = new Exercise('Pull ups', Participant::NOT_BEGINNER);
 
         $this->wod->setParticipantExercise($participant, $exercise, 0);
         $this->wod->setParticipantExercise($participant, clone $exercise, 1);
@@ -84,9 +84,9 @@ class WodTest extends TestCase
 
     public function testOnlyTwoParticipantsCanDoRingsAndPullUpsAtSameTime()
     {
-        $antonio = new Participant('Antonio', true);
-        $ronaldo = new Participant('Ronaldo', false);
-        $messi = new Participant('Messi', false);
+        $antonio = new Participant('Antonio', Participant::IS_BEGINNER);
+        $ronaldo = new Participant('Ronaldo', Participant::NOT_BEGINNER);
+        $messi = new Participant('Messi', Participant::NOT_BEGINNER);
 
         $pullUpsExercise = new Exercise('Pull ups', false);
         $ringsExercise = new Exercise('Rings', false);
