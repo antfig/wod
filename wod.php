@@ -5,7 +5,6 @@ use Wod\Entity\Participant;
 use Wod\Generator;
 use Wod\ValueObjects\Exercise;
 use Wod\ValueObjects\ExerciseBreak;
-use Wod\Wod;
 
 // Register the autoloader
 require_once __DIR__ . '/vendor/autoload.php';
@@ -33,37 +32,10 @@ $exercises->add(new Exercise('Jumping jacks', true))
     ->add(new Exercise('Jumping rope', true))
     ->add(new ExerciseBreak());
 
-$generator = new Generator($participants, $exercises);
-$wod = $generator->run();
+// Generate random wod for participants
+$wod = (new Generator($participants, $exercises))->run();
 
-// Print by Element (time)
-for ($element = 0; $element < Wod::ELEMENTS; $element++) {
+\Wod\Output::fromWod($wod)->printByElement();
+// \Wod\Output::fromWod($wod)->printByParticipant();
 
-    printf("\n\n%02d:00 - %02d:00", $element, $element + 1);
-
-    /** @var Participant $participant */
-    foreach ($wod->getParticipants() as $participant) {
-
-        $participantExercise = $participant->getExercise($element);
-        echo " | "
-            . $participant->getName()
-            . ($participant->isBeginner() ? ' (beginer)' : '')
-            . ($participantExercise instanceof Exercise ? ' will do ' : ' will take a ')
-            . $participantExercise->getName();
-    }
-}
-
-
-//Print by participant
-foreach ($wod->getParticipants() as $participant)
-{
-        echo "\n---------------\n";
-        echo $participant->getName() . ($participant->isBeginner() ? ' (beginer) ' : '');
-        /** @var Exercise $e */
-        foreach ($participant->getAllExercises() as $p => $e) {
-            printf("\n%02d:00 - %02d:00 ", $p, $p + 1);
-            echo $e->getName() . ($e->isCardio() ? ' (Cardio)' : '');
-        }
-}
-
-echo "\n\nEnd of the program";
+echo "\n\nEnd of the program\n";
