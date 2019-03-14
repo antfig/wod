@@ -1,5 +1,14 @@
 # Working of the day generator assignment
 
+## Business rules
+- During the program participants get two breaks. Beginners get four breaks of 1
+  minute instead of two
+- The program shouldn’t begin or end with breaks
+- Beginners should do a maximum of 1 handstand practise during the WOD
+- Jumping jacks, jumping rope and short sprints are cardio exercises and should not
+  follow after each other
+- The gym has limited space for the rings and pullups, a maximum of 2 participants
+  may do either one of these exercises (ring + pull up combined max 2)  
 
 ## Requirements
 - Docker
@@ -43,4 +52,16 @@ $ vendor/bin/phpunit --testdox
 
 Docker
 $ docker run --rm --volume $PWD:/app -it wod vendor/bin/phpunit
+```
+
+## Example output
+
+```
+Starting the workout with Camille, Michael, Tom (beginner), Tim, Erik, Lars, Mathijs (beginner)
+00:00 - 01:00 | Camille will do Push ups | Michael will do Jumping rope | Tom (beginer) will do Short sprints | Tim will do Back squats | Erik will do Pull ups | Lars will do Jumping jacks | Mathijs (beginer) will do Rings
+01:00 - 02:00 | Camille will do Push ups | Michael will do Back squats | Tom (beginer) will take a Break | Tim will do Pull ups | Erik will take a Break | Lars will do Pull ups | Mathijs (beginer) will do Back squats
+02:00 - 03:00 | Camille will do Jumping jacks | Michael will do Handstand practice | Tom (beginer) will do Short sprints | Tim will do Pull ups | Erik will take a Break | Lars will do Jumping rope | Mathijs (beginer) will do Back squats
+03:00 - 04:00 | Camille will do Push ups | Michael will do Front squats | Tom (beginer) will do Push ups | Tim will do Short sprints | Erik will do Front squats | Lars will do Push ups | Mathijs (beginer) will do Pull ups
+04:00 - 05:00 | Camille will do Jumping jacks | Michael will do Pull ups | Tom (beginer) will do Rings | Tim will do Front squats | Erik will do Handstand practice | Lars will do Handstand practice | Mathijs (beginer) will do Jumping rope
+...
 ```
