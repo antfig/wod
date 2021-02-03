@@ -103,7 +103,7 @@ final class Wod
      *
      * @throws Exception\RingsAndPullUpsLimitException
      */
-    private function ensureRingsAndPullUpsLimit(ExerciseInterface $exercise, int $position)
+    private function ensureRingsAndPullUpsLimit(ExerciseInterface $exercise, int $position): void
     {
         if ($exercise->getName() !== 'Rings'
             && $exercise->getName() !== 'Pull ups') {
@@ -131,7 +131,7 @@ final class Wod
      * @param ExerciseInterface $exercise
      * @param int $position
      */
-    private function addElementExercise(ExerciseInterface $exercise, int $position)
+    private function addElementExercise(ExerciseInterface $exercise, int $position): void
     {
         $element = $this->elements->get($position);
 
@@ -142,5 +142,4 @@ final class Wod
 
         $element->add($exercise);
     }
-
 }

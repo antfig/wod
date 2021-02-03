@@ -16,7 +16,7 @@
 
 ## Requirements
 - Docker
-- Or PHP 7.2 to run locally
+- Or PHP 7.3 to run locally
 
 ## Install
 - Clone this repo and enter it
@@ -32,8 +32,7 @@ Local
 $ composer install
 
 Or with docker
-$ docker run --rm --volume $PWD:/app -it wod \ 
-    vendor/bin/phpunit --coverage-html build/
+$ docker run --rm --volume $(pwd):/app -it wod composer install
 ```
 
 ## Usage
@@ -43,7 +42,7 @@ Local
 $ php wod.php
 
 Or Docker
-$ docker run --rm --volume $PWD:/app -it wod
+$ docker run --rm --volume $(pwd):/app -it wod
 
 ```
 
@@ -55,7 +54,13 @@ $ vendor/bin/phpunit --coverage-html coverage/
 $ vendor/bin/phpunit --testdox
 
 Docker
-$ docker run --rm --volume $PWD:/app -it wod vendor/bin/phpunit
+$ docker run --rm --volume $(pwd):/app -it wod vendor/bin/phpunit
+```
+
+## Static Analysis (phpstan)
+
+```bash
+vendor/bin/phpstan analyse
 ```
 
 ## Example output
