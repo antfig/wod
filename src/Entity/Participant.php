@@ -146,7 +146,7 @@ class Participant
      *
      * @throws ParticipantCanNotStartOrEndWithBreakException
      */
-    private function ensureNoBreaksAtBeginningOrEnd(ExerciseInterface $element, int $position)
+    private function ensureNoBreaksAtBeginningOrEnd(ExerciseInterface $element, int $position): void
     {
         if ($element instanceof ExerciseBreak
             && ($position === 0 || $position >= $this->getNumberOfMaxElements() - 1)) {
@@ -159,7 +159,7 @@ class Participant
      *
      * @throws ParticipantBreaksLimitException
      */
-    private function ensureLimitOfBreaks(ExerciseInterface $element)
+    private function ensureLimitOfBreaks(ExerciseInterface $element): void
     {
         if ($element instanceof ExerciseBreak
             && $this->numberOfBreaks() === $this->getMaxOfBreaks()) {
@@ -172,7 +172,7 @@ class Participant
      * @param ExerciseInterface $element
      * @throws BeginnerCanOnlyDoOneHandstandPracticeException
      */
-    private function ensureMaximumOfOneHandstandPractice(ExerciseInterface $element)
+    private function ensureMaximumOfOneHandstandPractice(ExerciseInterface $element): void
     {
         $handstandPractice = 'Handstand practice';
         if ($element->getName() === $handstandPractice
@@ -189,7 +189,7 @@ class Participant
      *
      * @throws CardioExercisesCanNotFollowEachOtherException
      */
-    private function ensureCardioExercisesNotFollowEachOther(ExerciseInterface $element, int $position)
+    private function ensureCardioExercisesNotFollowEachOther(ExerciseInterface $element, int $position): void
     {
         if (!$element->isCardio()) {
             return;

@@ -24,17 +24,17 @@ class Output
      * Factory
      *
      * @param Wod $wod
-     * @return Output
+     * @return self
      */
     public static function fromWod(Wod $wod): self
     {
-        return new static($wod);
+        return new self($wod);
     }
 
     /**
      * Print By elements (time)
      */
-    public function printByElement()
+    public function printByElement(): void
     {
         $participants = [];
         /** @var Participant $participant */
@@ -65,7 +65,7 @@ class Output
     /**
      * Print exercises by participant
      */
-    public function printByParticipant()
+    public function printByParticipant(): void
     {
         //Print by participant
         foreach ($this->wod->getParticipants() as $participant) {
